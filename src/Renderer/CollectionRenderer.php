@@ -10,20 +10,20 @@ use Yiisoft\DataResponse\DataResponse;
 use Yiisoft\Strings\Inflector;
 
 use App\Response\ResponseDataFactory;
-use App\Renderer\PaginatorRenderer;
+use App\Presenter\PaginatorPresenter;
 
 final class CollectionRenderer
 {
     public function __construct(
         private ResponseDataFactory $responseDataFactory,
-        private PaginatorRenderer $paginatorRenderer,
+        private PaginatorPresenter $paginatorPresenter,
         private Inflector $inflector,
         private DataResponseFactoryInterface $dataResponseFactory
     ) {}
 
     public function render(array $rows, PaginatorInterface $paginator): DataResponse
     {
-        $pagination = $this->paginatorRenderer->render($paginator);
+        $pagination = $this->paginatorPresenter->present($paginator);
         $responseData = $this->responseDataFactory->createResponseData()
             ->setData($rows)
             ->setPagination($pagination);

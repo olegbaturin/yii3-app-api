@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace App\Renderer;
+namespace App\Presenter;
 
 use Yiisoft\Data\Paginator\OffsetPaginator;
 use Yiisoft\Data\Paginator\PaginatorInterface;
 
 use App\Resource\PaginatorResource;
 
-final class PaginatorRenderer
+final class PaginatorPresenter implements PresenterInterface
 {
-    public function render(PaginatorInterface $paginator): PaginatorResource
+    public function present(PaginatorInterface $paginator): PaginatorResource
     {
         $resource = new PaginatorResource(
             page: $paginator->getCurrentPage(),
